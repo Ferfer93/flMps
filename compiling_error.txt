@@ -1,0 +1,5 @@
+In file included from /store/SOFT/fmc36/flocking_mips/main.cpp:3:0:
+/store/SOFT/fmc36/flocking_mips/globalVariables.hpp:20:93: error: in C++98 ‘err_strings’ must be initialized by constructor, not by ‘{...}’
+                                             "Particles bigger than a third of the cell size"};
+                                                                                             ^
+/store/SOFT/fmc36/flocking_mips/globalVariables.hpp:20:93: error: could not convert ‘{"Density is too high", "Cell size bigger than half the system size", "Particles bigger than a third of the cell size"}’ from ‘<brace-enclosed initializer list>’ to ‘const std::vector<std::__cxx11::basic_string<char> >’
