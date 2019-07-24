@@ -9,7 +9,9 @@ OBJS=$(subst .cpp,.o,$(SRCS))
 all: mainSim
 
 mainSim: $(SRCS)
-	$(CXX) -std=c++14 $(SRCS) -o mainSim -l$(EXTL)
+	@mkdir -p bin
+	$(CXX) -std=c++14 $(SRCS) -O2 -Wall -o bin/mainSim -l$(EXTL)
 
 clean:
-	rm -f mainSim
+	rm -f bin/*
+	rmdir bin
