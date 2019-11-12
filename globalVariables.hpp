@@ -28,7 +28,7 @@ using namespace std;
 #define NBR 0x80
 
 //Help text
-static const string helpStr = "Usage\nArg 1: System size\nArg 2: Cell size\nArg 3: Number of particles\nArg 4: Timestep size\nArg 5: Rotational diffusion\nArg 6: Space diffusion\nArg 7: Particle radius\nArg 8: Alignment coupling\nArg 9: Number of timesteps\n";
+static const string helpStr = "Usage\nArg 1: System size\nArg 2: Cell size\nArg 3: Number of particles\nArg 4: Timestep size\nArg 5: Rotational diffusion\nArg 6: Space diffusion\nArg 7: Particle radius\nArg 8: Alignment coupling\nArg 9: Number of timesteps\nArg 10: How often to write snapshot\n";
 
 //Errors
 #define ERR_TOOMANYPARTICLES 1

@@ -248,12 +248,13 @@ int Simulation::removeParticleFromLattice(float pX, float pY, int prtIndex) {
 }
 
 //Writing methods
-int Simulation::printSnapshot() {
+int Simulation::printSnapshot(int skip) {
     //File writing
     ofstream snapFile;
     snapFile.open("snaps.out", ios::app);
     for (int i = 0; i < partNumber; i++) {
-        snapFile << particleSet[i].particleIndex << " " << particleSet[i].posX << " " << particleSet[i].posY << " " << particleSet[i].theta << " " << (int)neighFlags(particleSet[i].posX,particleSet[i].posY) << endl;
+        if (i%skip == 0)
+            snapFile << particleSet[i].particleIndex << " " << particleSet[i].posX << " " << particleSet[i].posY << " " << particleSet[i].theta << " " << (int)neighFlags(particleSet[i].posX,particleSet[i].posY) << endl;
     }
     snapFile.close();
 }
@@ -316,17 +317,16 @@ int Simulation::moveParticle(int pInd) {
     if (nY < 0.0f)
         nY += (float)systemSize;
     //Second check? wtf?
-    if (nX == 102)
+    if (nX == systemSize)
         nX = 0.0f;
-    if (nY == 102)
+    if (nY == systemSize)
         nY = 0.00f;
     if (nX >= systemSize || nX < 0.0f)
         cout << "Warning move X " << "(" << nX << "," << nY << ")" << " " << pX << " " << pY << endl;
     if (nY >= systemSize || nY < 0.0f)
         cout << "Warning move X " << "(" << nX << "," << nY << ")" << " " << pX << " " << pY << endl;
     if (checkNakedCollision(nX, nY, pInd)) {
-        particleSet[pInd].theta += SQ2*rotDiffusion*dT*rt;
-        particleSet[pInd].theta += -2*PI*floor(particleSet[pInd].theta/(2*PI));
+        particleSet[pInd].theta += SQ2*rotDiffusion*dT*rt-2*PI*floor((th+SQ2*rotDiffusion*dT*rt))/(2*PI));
         return 1;
     }
     removeParticleFromLattice(pX,pY,pInd);
@@ -347,8 +347,8 @@ int Simulation::moveParticle(int pInd) {
             }
         }
     }
-    particleSet[pInd].theta += -J*rotH*dT + SQ2*rotDiffusion*dT*rt;
-    particleSet[pInd].theta += -2*PI*floor(particleSet[pInd].theta/(2*PI));
+    th = particleSet[pInd].theta;
+    particleSet[pInd].theta += -J*rotH*dT + SQ2*rotDiffusion*dT*rt-2*PI*floor((th-J*rotH*dT + SQ2*rotDiffusion*dT*rt))/(2*PI));
 
     return 0;
 }

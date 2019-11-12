@@ -51,7 +51,7 @@ public:
     int checkSingleSqColl(float, float, int, int);
     int addParticleToLattice(float, float, int);
     int removeParticleFromLattice(float, float, int);
-    int printSnapshot();
+    int printSnapshot(int);
     int printSnapLatt();
 
     int updateCycle(int method);

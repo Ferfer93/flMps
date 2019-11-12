@@ -8,7 +8,7 @@ using namespace std;
 
 int main(int argc, char **argv) {
 
-    if (argc != 10) {
+    if (argc != 12) {
         cout << helpStr;
         return 0;
     }
@@ -53,8 +53,8 @@ int main(int argc, char **argv) {
             }
             cout << a << endl;*/
         }
-        if (i%100==0)
-            simFramework.printSnapshot();
+        if (i%atoi(argv[10])==0)
+            simFramework.printSnapshot(atoi(argv[11]));
         //simFramework.printSnapLatt();
     }
     cout << endl;
